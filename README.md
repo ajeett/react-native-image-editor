@@ -12,9 +12,7 @@ A React Native module that allows you to use native UI to select a photo/video f
 | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | <img title="iOS" src="https://github.com/react-community/react-native-image-picker/blob/master/images/ios-image.png"> | <img title="Android" src="https://github.com/react-community/react-native-image-picker/blob/master/images/android-image.png"> |
 
-#### _Before you open an issue_
 
-This library started as a basic bridge of the native iOS image picker, and I want to keep it that way. As such, functionality beyond what the native `UIImagePickerController` supports will not be supported here. **Multiple image selection, more control over the crop tool, and landscape support** are things missing from the native iOS functionality - **not issues with my library**. If you need these things, [react-native-image-crop-picker](https://github.com/ivpusic/react-native-image-crop-picker) might be a better choice for you.
 
 ## React Native Compatibility
 To use this library you need to ensure you match up with the correct version of React Native you are using.
@@ -30,13 +28,13 @@ p.s. React Native introduced AndroidX support in 0.60, which is a **breaking cha
 ## Getting Started
 
 ```
-yarn add react-native-image-picker
+yarn add react-native-image-editor
 
 # RN >= 0.60
 cd ios && pod install
 
 # RN < 0.60
-react-native link react-native-image-picker
+react-native link react-native-image-editor
 ```
 
 You will also need to add `UsageDescription` on iOS and some permissions on Android, refer to the [Install doc](docs/Install.md).
@@ -44,7 +42,7 @@ You will also need to add `UsageDescription` on iOS and some permissions on Andr
 ## Usage
 
 ```javascript
-import ImagePicker from 'react-native-image-picker';
+import ImageEditor from 'react-native-image-editor';
 
 // More info on all the options is below in the API Reference... just some common use cases shown here
 const options = {
@@ -60,13 +58,13 @@ const options = {
  * The first arg is the options object for customization (it can also be null or omitted for default options),
  * The second arg is the callback which sends object: response (more info in the API Reference)
  */
-ImagePicker.showImagePicker(options, (response) => {
+ImageEditor.showImagePicker(options, (response) => {
   console.log('Response = ', response);
 
   if (response.didCancel) {
     console.log('User cancelled image picker');
   } else if (response.error) {
-    console.log('ImagePicker Error: ', response.error);
+    console.log('ImageEditor Error: ', response.error);
   } else if (response.customButton) {
     console.log('User tapped custom button: ', response.customButton);
   } else {
@@ -95,12 +93,12 @@ do the following:
 
 ```javascript
 // Launch Camera:
-ImagePicker.launchCamera(options, (response) => {
+ImageEditor.launchCamera(options, (response) => {
   // Same code as in above section!
 });
 
 // Open Image Library:
-ImagePicker.launchImageLibrary(options, (response) => {
+ImageEditor.launchImageLibrary(options, (response) => {
   // Same code as in above section!
 });
 ```
