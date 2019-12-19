@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.facebook.react.bridge.ReadableMap;
-import com.imagepicker.ImagePickerModule;
+import com.imagepicker.ImageEditorModule;
 import com.imagepicker.ResponseHelper;
 import com.imagepicker.media.ImageConfig;
 
@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 import java.util.UUID;
 
-import static com.imagepicker.ImagePickerModule.REQUEST_LAUNCH_IMAGE_CAPTURE;
+import static com.imagepicker.ImageEditorModule.REQUEST_LAUNCH_IMAGE_CAPTURE;
 
 /**
  * Created by rusfearuth on 15.03.17.
@@ -201,7 +201,7 @@ public class MediaUtils
     public static void removeUselessFiles(final int requestCode,
                                           @NonNull final ImageConfig imageConfig)
     {
-        if (requestCode != ImagePickerModule.REQUEST_LAUNCH_IMAGE_CAPTURE)
+        if (requestCode != ImageEditorModule.REQUEST_LAUNCH_IMAGE_CAPTURE)
         {
             return;
         }

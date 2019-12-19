@@ -12,22 +12,22 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class ImagePickerPackage implements ReactPackage {
+public class ImageEditorPackage implements ReactPackage {
   private @StyleRes final int dialogThemeId;
 
-  public ImagePickerPackage()
+  public ImageEditorPackage()
   {
-    this.dialogThemeId = ImagePickerModule.DEFAULT_EXPLAINING_PERMISSION_DIALIOG_THEME;
+    this.dialogThemeId = ImageEditorModule.DEFAULT_EXPLAINING_PERMISSION_DIALIOG_THEME;
   }
 
-  public ImagePickerPackage(@StyleRes final int dialogThemeId)
+  public ImageEditorPackage(@StyleRes final int dialogThemeId)
   {
     this.dialogThemeId = dialogThemeId;
   }
 
   @Override
   public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-    return Arrays.<NativeModule>asList(new ImagePickerModule(reactContext, dialogThemeId));
+    return Arrays.<NativeModule>asList(new ImageEditorModule(reactContext, dialogThemeId));
   }
 
   // Deprecated RN 0.47

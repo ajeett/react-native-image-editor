@@ -61,8 +61,8 @@ import static com.imagepicker.utils.MediaUtils.*;
 import static com.imagepicker.utils.MediaUtils.createNewFile;
 import static com.imagepicker.utils.MediaUtils.getResizedImage;
 
-@ReactModule(name = ImagePickerModule.NAME)
-public class ImagePickerModule extends ReactContextBaseJavaModule
+@ReactModule(name = ImageEditorModule.NAME)
+public class ImageEditorModule extends ReactContextBaseJavaModule
         implements ActivityEventListener,PhotoTaken
 {
   public static final String NAME = "ImagePickerManager";
@@ -140,12 +140,12 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
   private Uri selectedImageUri;
   private String finalImagePath=null;
 
-  public ImagePickerModule(ReactApplicationContext reactContext)
+  public ImageEditorModule(ReactApplicationContext reactContext)
   {
     this(reactContext, DEFAULT_EXPLAINING_PERMISSION_DIALIOG_THEME);
   }
 
-  public ImagePickerModule(ReactApplicationContext reactContext,
+  public ImageEditorModule(ReactApplicationContext reactContext,
                            @StyleRes final int dialogThemeId)
   {
     super(reactContext);
@@ -177,7 +177,7 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
     final AlertDialog dialog = UI.chooseDialog(this, options, new UI.OnAction()
     {
       @Override
-      public void onTakePhoto(@NonNull final ImagePickerModule module)
+      public void onTakePhoto(@NonNull final ImageEditorModule module)
       {
         if (module == null)
         {
@@ -187,7 +187,7 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
       }
 
       @Override
-      public void onUseLibrary(@NonNull final ImagePickerModule module)
+      public void onUseLibrary(@NonNull final ImageEditorModule module)
       {
         if (module == null)
         {
@@ -197,7 +197,7 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
       }
 
       @Override
-      public void onCancel(@NonNull final ImagePickerModule module)
+      public void onCancel(@NonNull final ImageEditorModule module)
       {
         if (module == null)
         {
@@ -207,7 +207,7 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
       }
 
       @Override
-      public void onCustomButton(@NonNull final ImagePickerModule module,
+      public void onCustomButton(@NonNull final ImageEditorModule module,
                                  @NonNull final String action)
       {
         if (module == null)
@@ -741,10 +741,10 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
                 .explainingDialog(this, options, new PermissionUtils.OnExplainingPermissionCallback()
                 {
                   @Override
-                  public void onCancel(WeakReference<ImagePickerModule> moduleInstance,
+                  public void onCancel(WeakReference<ImageEditorModule> moduleInstance,
                                        DialogInterface dialogInterface)
                   {
-                    final ImagePickerModule module = moduleInstance.get();
+                    final ImageEditorModule module = moduleInstance.get();
                     if (module == null)
                     {
                       return;
@@ -753,10 +753,10 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
                   }
 
                   @Override
-                  public void onReTry(WeakReference<ImagePickerModule> moduleInstance,
+                  public void onReTry(WeakReference<ImageEditorModule> moduleInstance,
                                       DialogInterface dialogInterface)
                   {
-                    final ImagePickerModule module = moduleInstance.get();
+                    final ImageEditorModule module = moduleInstance.get();
                     if (module == null)
                     {
                       return;

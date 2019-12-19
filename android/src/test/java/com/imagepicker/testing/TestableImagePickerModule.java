@@ -7,13 +7,13 @@ import androidx.annotation.StyleRes;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.imagepicker.ImagePickerModule;
+import com.imagepicker.ImageEditorModule;
 
 /**
  * Created by rusfearuth on 10.04.17.
  */
 
-public class TestableImagePickerModule extends ImagePickerModule
+public class TestableImagePickerModule extends ImageEditorModule
 {
     public TestableImagePickerModule(ReactApplicationContext reactContext,
                                      @StyleRes int dialogThemeId)

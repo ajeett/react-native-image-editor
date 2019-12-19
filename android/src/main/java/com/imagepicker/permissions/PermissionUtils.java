@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableNativeMap;
-import com.imagepicker.ImagePickerModule;
+import com.imagepicker.ImageEditorModule;
 
 import java.lang.ref.WeakReference;
 
@@ -18,7 +18,7 @@ import java.lang.ref.WeakReference;
 
 public class PermissionUtils
 {
-    public static @Nullable AlertDialog explainingDialog(@NonNull final ImagePickerModule module,
+    public static @Nullable AlertDialog explainingDialog(@NonNull final ImageEditorModule module,
                                                          @NonNull final ReadableMap options,
                                                          @NonNull final OnExplainingPermissionCallback callback)
     {
@@ -40,7 +40,7 @@ public class PermissionUtils
         final String text = permissionDenied.getString("text");
         final String btnReTryTitle = permissionDenied.getString("reTryTitle");
         final String btnOkTitle = permissionDenied.getString("okTitle");
-        final WeakReference<ImagePickerModule> reference = new WeakReference<>(module);
+        final WeakReference<ImageEditorModule> reference = new WeakReference<>(module);
 
         final Activity activity = module.getActivity();
 
@@ -77,7 +77,7 @@ public class PermissionUtils
     }
 
     public interface OnExplainingPermissionCallback {
-        void onCancel(WeakReference<ImagePickerModule> moduleInstance, DialogInterface dialogInterface);
-        void onReTry(WeakReference<ImagePickerModule> moduleInstance, DialogInterface dialogInterface);
+        void onCancel(WeakReference<ImageEditorModule> moduleInstance, DialogInterface dialogInterface);
+        void onReTry(WeakReference<ImageEditorModule> moduleInstance, DialogInterface dialogInterface);
     }
 }

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import android.widget.ArrayAdapter;
 
 import com.facebook.react.bridge.ReadableMap;
-import com.imagepicker.ImagePickerModule;
+import com.imagepicker.ImageEditorModule;
 import com.imagepicker.R;
 
 import java.lang.ref.WeakReference;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class UI
 {
-    public static @NonNull AlertDialog chooseDialog(@Nullable final ImagePickerModule module,
+    public static @NonNull AlertDialog chooseDialog(@Nullable final ImageEditorModule module,
                                                     @NonNull final ReadableMap options,
                                                     @Nullable final OnAction callback)
     {
@@ -29,7 +29,7 @@ public class UI
         {
             return null;
         }
-        final WeakReference<ImagePickerModule> reference = new WeakReference<>(module);
+        final WeakReference<ImageEditorModule> reference = new WeakReference<>(module);
 
         final ButtonsHelper buttons = ButtonsHelper.newInstance(options);
         final List<String> titles = buttons.getTitles();
@@ -97,9 +97,9 @@ public class UI
 
     public interface OnAction
     {
-        void onTakePhoto(@Nullable ImagePickerModule module);
-        void onUseLibrary(@Nullable ImagePickerModule module);
-        void onCancel(@Nullable ImagePickerModule module);
-        void onCustomButton(@Nullable ImagePickerModule module, String action);
+        void onTakePhoto(@Nullable ImageEditorModule module);
+        void onUseLibrary(@Nullable ImageEditorModule module);
+        void onCancel(@Nullable ImageEditorModule module);
+        void onCustomButton(@Nullable ImageEditorModule module, String action);
     }
 }

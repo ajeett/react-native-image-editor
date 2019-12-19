@@ -1,16 +1,13 @@
 package com.imagepicker.testing;
 
 import android.app.Activity;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 
 import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.JavaOnlyArray;
 import com.facebook.react.bridge.JavaOnlyMap;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.common.build.ReactBuildConfig;
-import com.imagepicker.ImagePickerModule;
+import com.imagepicker.ImageEditorModule;
 import com.imagepicker.R;
 
 import org.junit.After;
@@ -90,7 +87,7 @@ public class ImagePickerModuleTest
         final SampleCallback callback = new SampleCallback();
         module.setCallback(callback);
         module.setCameraCaptureUri(Uri.fromFile(new File("")));
-        module.onActivityResult(activity, ImagePickerModule.REQUEST_LAUNCH_IMAGE_CAPTURE, Activity.RESULT_CANCELED, null);
+        module.onActivityResult(activity, ImageEditorModule.REQUEST_LAUNCH_IMAGE_CAPTURE, Activity.RESULT_CANCELED, null);
         assertFalse("Camera's been launched", callback.hasError());
         assertTrue("User's cancelled of taking a photo", callback.didCancel());
     }

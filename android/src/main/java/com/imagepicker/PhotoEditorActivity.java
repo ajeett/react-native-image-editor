@@ -2,7 +2,6 @@ package com.imagepicker;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -26,7 +25,6 @@ import android.widget.TextView;
 //import com.viewpagerindicator.PageIndicator;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,7 +32,6 @@ import com.imagepicker.R;
 import com.imagepicker.photoedit.BrushDrawingView;
 import com.imagepicker.photoedit.OnPhotoEditorSDKListener;
 import com.imagepicker.photoedit.PhotoEditorSDK;
-import com.imagepicker.photoedit.PhotoTaken;
 import com.imagepicker.photoedit.ViewType;
 import com.imagepicker.widget.SlidingUpPanelLayout;
 
@@ -323,7 +320,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("imagePath", photoEditorSDK.saveImage("PhotoEditorSDK", imageName));
                 path=returnIntent.getStringExtra("imagePath");
-                ImagePickerModule.setResult(path,getApplicationContext());
+                ImageEditorModule.setResult(path,getApplicationContext());
 
                 setResult(Activity.RESULT_OK, returnIntent);
 
