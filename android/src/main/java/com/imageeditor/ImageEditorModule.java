@@ -65,7 +65,7 @@ import static com.imageeditor.utils.MediaUtils.getResizedImage;
 public class ImageEditorModule extends ReactContextBaseJavaModule
         implements ActivityEventListener,PhotoTaken
 {
-  public static final String NAME = "ImagePickerManager";
+  public static final String NAME = "ImageEditorManager";
 
   public static final int DEFAULT_EXPLAINING_PERMISSION_DIALIOG_THEME = R.style.DefaultExplainingPermissionsTheme;
 
