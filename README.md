@@ -28,7 +28,7 @@ p.s. React Native introduced AndroidX support in 0.60, which is a **breaking cha
 ## Getting Started
 
 ```
-yarn add react-native-image-editor
+npm install --save git+https://github.com/ajeett/react-native-image-editor.git
 
 # RN >= 0.60
 cd ios && pod install
