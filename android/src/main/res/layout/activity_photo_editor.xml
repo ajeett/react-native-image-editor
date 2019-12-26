@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <com.imagepicker.widget.SlidingUpPanelLayout
+    <com.imageeditor.widget.SlidingUpPanelLayout
         android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,7 +37,7 @@
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop" />
 
-                <com.imagepicker.photoedit.BrushDrawingView
+                <com.imageeditor.photoedit.BrushDrawingView
                     android:id="@+id/drawing_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -304,7 +304,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.imagepicker.widget.RealtimeBlurView
+            <com.imageeditor.widget.RealtimeBlurView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:realtimeBlurRadius="10dp"
@@ -328,6 +328,6 @@
 
         </RelativeLayout>
 
-    </com.imagepicker.widget.SlidingUpPanelLayout>
+    </com.imageeditor.widget.SlidingUpPanelLayout>
 
 </RelativeLayout>
