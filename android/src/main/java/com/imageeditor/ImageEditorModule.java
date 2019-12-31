@@ -350,6 +350,7 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
       e.printStackTrace();
     }
 
+    this.callback=callback1;
 
     String imageLink=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+"/whiteImage/white123.png";
     if (UtilFunctions.stringIsNotEmpty(imageLink)) {
