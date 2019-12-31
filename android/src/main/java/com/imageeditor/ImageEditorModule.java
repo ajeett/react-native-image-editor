@@ -21,6 +21,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
 import android.webkit.MimeTypeMap;
@@ -322,6 +323,71 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
       responseHelper.invokeError(callback, "Cannot launch camera");
     }
   }
+
+
+  @ReactMethod
+  private void showBlankCanvas(ReadableMap options1, Callback callback1) {
+
+    Bitmap bm = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.white);
+    String extStorageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+"/whiteImage/".toString();
+
+    File file = new File(extStorageDirectory, "white123.png");
+    FileOutputStream outStream = null;
+    try {
+      outStream = new FileOutputStream(file);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    bm.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+    try {
+      outStream.flush();
+      outStream.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+
+    String imageLink=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+"/whiteImage/white123.png";
+    if (UtilFunctions.stringIsNotEmpty(imageLink)) {
+      // decode image size
+      BitmapFactory.Options o = new BitmapFactory.Options();
+      o.inJustDecodeBounds = true;
+      BitmapFactory.decodeFile(imageLink, o);
+      // Find the correct scale value. It should be the power of
+      // 2.
+      DisplayMetrics displayMetrics = new DisplayMetrics();
+      getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+      int height = displayMetrics.heightPixels;
+      int width = displayMetrics.widthPixels;
+
+      int width_tmp = o.outWidth, height_tmp = o.outHeight;
+      Log.d("MediaActivity", "MediaActivity : image size : "
+              + width_tmp + " ; " + height_tmp);
+      final int MAX_SIZE = getContext().getResources().getDimensionPixelSize(
+              R.dimen.image_loader_post_width);
+      int scale = 1;
+
+      if (height_tmp > MAX_SIZE || width_tmp > MAX_SIZE) {
+        if (width_tmp > height_tmp) {
+          scale = Math.round((float) height_tmp
+                  / (float) MAX_SIZE);
+        } else {
+          scale = Math.round((float) width_tmp
+                  / (float) MAX_SIZE);
+        }
+      }
+      Log.d("MediaActivity", "MediaActivity : scaling image by factor : " + scale);
+      BitmapFactory.Options options = new BitmapFactory.Options();
+      options.inSampleSize = scale;
+
+      bitmap = BitmapFactory.decodeFile(imageLink, options);
+      _taken = true;
+      onPhotoTaken(imageLink);
+      System.gc();
+    }
+
+  }
+
 
   public void launchImageLibrary()
   {
