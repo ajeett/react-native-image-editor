@@ -326,10 +326,14 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
 
 
   @ReactMethod
-  private void showBlankCanvas(ReadableMap options1, Callback callback1) {
+  public void showBlankCanvas(ReadableMap options1, Callback callback1) {
 
     Bitmap bm = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.white);
     String extStorageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+"/whiteImage/".toString();
+    File rootDir = new File(extStorageDirectory);
+    if (!rootDir.exists()) {
+      rootDir.mkdir();
+    }
 
     File file = new File(extStorageDirectory, "white123.png");
     FileOutputStream outStream = null;
