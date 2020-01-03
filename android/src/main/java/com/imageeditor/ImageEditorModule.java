@@ -395,6 +395,50 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
 
   }
 
+  @ReactMethod
+  public void editImage(ReadableMap options,Callback callback){
+    Callback mCallback=callback;
+    Log.e("Callback",mCallback.toString());
+    this.callback=mCallback;
+    String imageLink=options.getString("imageUri");
+    if (UtilFunctions.stringIsNotEmpty(imageLink)) {
+      // decode image size
+      BitmapFactory.Options o = new BitmapFactory.Options();
+      o.inJustDecodeBounds = true;
+      BitmapFactory.decodeFile(imageLink, o);
+      // Find the correct scale value. It should be the power of
+      // 2.
+      DisplayMetrics displayMetrics = new DisplayMetrics();
+      getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+      int height = displayMetrics.heightPixels;
+      int width = displayMetrics.widthPixels;
+
+      int width_tmp = o.outWidth, height_tmp = o.outHeight;
+      Log.d("MediaActivity", "MediaActivity : image size : "
+              + width_tmp + " ; " + height_tmp);
+      final int MAX_SIZE = getContext().getResources().getDimensionPixelSize(
+              R.dimen.image_loader_post_width);
+      int scale = 1;
+
+      if (height_tmp > MAX_SIZE || width_tmp > MAX_SIZE) {
+        if (width_tmp > height_tmp) {
+          scale = Math.round((float) height_tmp
+                  / (float) MAX_SIZE);
+        } else {
+          scale = Math.round((float) width_tmp
+                  / (float) MAX_SIZE);
+        }
+      }
+      Log.d("MediaActivity", "MediaActivity : scaling image by factor : " + scale);
+      BitmapFactory.Options options2 = new BitmapFactory.Options();
+      options2.inSampleSize = scale;
+
+      bitmap = BitmapFactory.decodeFile(imageLink, options2);
+      _taken = true;
+      onPhotoTaken(imageLink);
+      System.gc();
+    }
+  }
 
   public void launchImageLibrary()
   {

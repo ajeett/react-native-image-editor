@@ -35,7 +35,7 @@
                     android:layout_centerInParent="true"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:scaleType="centerCrop" />
+                     />
 
                 <com.imageeditor.photoedit.BrushDrawingView
                     android:id="@+id/drawing_view"
