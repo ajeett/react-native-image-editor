@@ -33,9 +33,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
                     android:adjustViewBounds="true"
-                    android:contentDescription="@string/app_name"
-                     />
+                    android:contentDescription="@string/app_name"/>
 
                 <com.imageeditor.photoedit.BrushDrawingView
                     android:id="@+id/drawing_view"
@@ -95,9 +95,9 @@
             <View
                 android:id="@+id/top_shadow"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="60dp"
                 android:layout_alignParentTop="true"
-                android:background="@drawable/fading_shadow" />
+                android:background="@color/black" />
 
             <RelativeLayout
                 android:id="@+id/top_parent_rl"
@@ -106,14 +106,39 @@
                 android:layout_alignBottom="@+id/top_shadow"
                 android:layout_alignTop="@+id/top_shadow"
                 android:paddingLeft="5dp"
+                android:gravity="center"
                 android:paddingRight="5dp">
 
                 <TextView
                     android:id="@+id/close_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:text="@string/ic_close"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+
+
+                <TextView
+                    android:id="@+id/clear_all_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_toRightOf="@id/close_tv"
+                    android:layout_toEndOf="@id/close_tv"
+                    android:text="@string/ic_clear_all"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/save_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_toRightOf="@id/clear_all_tv"
+                    android:layout_toEndOf="@id/clear_all_tv"
+                    android:text="@string/ic_save"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -123,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:text="@string/ic_text"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
@@ -134,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@+id/add_text_tv"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:text="@string/ic_draw"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
@@ -145,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@+id/add_pencil_tv"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:text="@string/ic_images"
                     android:visibility="gone"
                     android:textColor="#FFFFFF"
@@ -157,9 +182,10 @@
             <View
                 android:id="@+id/bottom_shadow"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
+                android:visibility="gone"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/below_shadow" />
+                android:background="@color/black" />
 
             <RelativeLayout
                 android:id="@+id/bottom_parent_rl"
@@ -170,64 +196,36 @@
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp">
 
-                <TextView
-                    android:id="@+id/save_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/save_text_tv"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:text="@string/ic_save"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp"
-                    android:layout_alignRight="@+id/save_text_tv"
-                    android:layout_alignParentLeft="true" />
+
 
                 <TextView
                     android:id="@+id/save_text_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/save_tv"
                     android:layout_centerVertical="true"
+                    android:visibility="gone"
                     android:layout_marginTop="4dp"
                     android:text="@string/save"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp"
                     android:layout_alignParentLeft="true" />
 
-                <TextView
-                    android:id="@+id/clear_all_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/clear_all_text_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/save_tv"
-                    android:gravity="center"
-                    android:text="@string/ic_clear_all"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp"
-                    android:layout_alignRight="@+id/clear_all_text_tv"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/save_tv" />
+
 
                 <TextView
                     android:id="@+id/clear_all_text_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/clear_all_tv"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/save_tv"
                     android:text="@string/clear_all"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/save_tv" />
+                    android:visibility="gone"
+
+                    android:layout_marginLeft="20dp"/>
 
                 <TextView
                     android:id="@+id/undo_tv"
@@ -237,7 +235,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/clear_all_tv"
+                    android:layout_toEndOf="@+id/clear_all_text_tv"
                     android:gravity="center"
                     android:text="@string/ic_clear_all"
                     android:textColor="#FFFFFF"
@@ -245,23 +243,23 @@
                     android:visibility="gone"
                     android:layout_alignRight="@+id/undo_text_tv"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/clear_all_tv" />
+                    android:layout_toRightOf="@+id/clear_all_text_tv" />
 
                 <TextView
                     android:id="@+id/undo_text_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/clear_all_tv"
+                    android:layout_below="@+id/clear_all_text_tv"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/clear_all_tv"
+                    android:layout_toEndOf="@+id/clear_all_text_tv"
                     android:text="@string/undo"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp"
                     android:visibility="gone"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/clear_all_tv" />
+                    android:layout_toRightOf="@+id/clear_all_text_tv" />
 
                 <TextView
                     android:id="@+id/go_to_next_screen_tv"
@@ -269,6 +267,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
+                    android:visibility="gone"
                     android:text="@string/ic_continue"
                     android:textColor="#FFFFFF"
                     android:textSize="40sp"

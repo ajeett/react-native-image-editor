@@ -273,8 +273,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     private void updateView(int visibility) {
         topShadow.setVisibility(visibility);
         topShadowRelativeLayout.setVisibility(visibility);
-        bottomShadow.setVisibility(visibility);
-        bottomShadowRelativeLayout.setVisibility(visibility);
+        bottomShadow.setVisibility(View.GONE);
+        bottomShadowRelativeLayout.setVisibility(View.GONE);
     }
 
     private void updateBrushDrawingView(boolean brushDrawingMode) {
@@ -364,8 +364,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onAddViewListener(ViewType viewType, int numberOfAddedViews) {
         if (numberOfAddedViews > 0) {
-            undoTextView.setVisibility(View.VISIBLE);
-            undoTextTextView.setVisibility(View.VISIBLE);
+            undoTextView.setVisibility(View.GONE);
+            undoTextTextView.setVisibility(View.GONE);
         }
         switch (viewType) {
             case BRUSH_DRAWING:
