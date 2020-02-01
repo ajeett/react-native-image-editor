@@ -10,7 +10,7 @@ A React Native module that allows you to use native UI to select a photo/video f
 
 | iOS                                                                                                                   | Android                                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| <img title="iOS" src="https://github.com/react-community/react-native-image-picker/blob/master/images/ios-image.png"> | <img title="Android" src="https://github.com/react-community/react-native-image-picker/blob/master/images/android-image.png"> |
+
 
 
 
