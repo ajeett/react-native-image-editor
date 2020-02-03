@@ -7,7 +7,7 @@
 
 @import MobileCoreServices;
 
-@interface ImagePickerManager ()
+@interface ImageEditorManager ()
 
 @property (nonatomic, strong) UIImagePickerController *picker;
 @property (nonatomic, strong) RCTResponseSenderBlock callback;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation ImagePickerManager
+@implementation ImageEditorManager
 
 RCT_EXPORT_MODULE();
 
