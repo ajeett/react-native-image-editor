@@ -1,4 +1,4 @@
-#import "ImagePickerManager.h"
+#import "ImageEditorManager.h"
 #import <React/RCTConvert.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
@@ -309,7 +309,7 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
                     self.response[@"longitude"] = @(pickedAsset.location.coordinate.longitude);
                 }
                 if (pickedAsset.creationDate) {
-                    self.response[@"timestamp"] = [[ImagePickerManager ISO8601DateFormatter] stringFromDate:pickedAsset.creationDate];
+                    self.response[@"timestamp"] = [[ImageEditorManager ISO8601DateFormatter] stringFromDate:pickedAsset.creationDate];
                 }
             }
 
@@ -421,7 +421,7 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
                                 self.response[@"fileName"] = originalFilename ?: [NSNull null];
                                 // This implementation will never have a location for the captured image, it needs to be added manually with CoreLocation code here.
                                 if (capturedAsset.creationDate) {
-                                    self.response[@"timestamp"] = [[ImagePickerManager ISO8601DateFormatter] stringFromDate:capturedAsset.creationDate];
+                                    self.response[@"timestamp"] = [[ImageEditorManager ISO8601DateFormatter] stringFromDate:capturedAsset.creationDate];
                                 }
                             }
                             self.callback(@[self.response]);
@@ -446,7 +446,7 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
                     self.response[@"longitude"] = @(pickedAsset.location.coordinate.longitude);
                 }
                 if (pickedAsset.creationDate) {
-                    self.response[@"timestamp"] = [[ImagePickerManager ISO8601DateFormatter] stringFromDate:pickedAsset.creationDate];
+                    self.response[@"timestamp"] = [[ImageEditorManager ISO8601DateFormatter] stringFromDate:pickedAsset.creationDate];
                 }
             }
 
@@ -489,7 +489,7 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
                                 self.response[@"fileName"] = originalFilename ?: [NSNull null];
                                 // This implementation will never have a location for the captured image, it needs to be added manually with CoreLocation code here.
                                 if (capturedAsset.creationDate) {
-                                    self.response[@"timestamp"] = [[ImagePickerManager ISO8601DateFormatter] stringFromDate:capturedAsset.creationDate];
+                                    self.response[@"timestamp"] = [[ImageEditorManager ISO8601DateFormatter] stringFromDate:capturedAsset.creationDate];
                                 }
                             }
 
