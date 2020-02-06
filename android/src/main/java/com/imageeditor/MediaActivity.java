@@ -98,7 +98,7 @@ public abstract class MediaActivity extends BaseActivity implements PhotoTaken {
                         options.inSampleSize = scale;
                         bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
                         _taken = true;
-                        onPhotoTaken(selectedImagePath);
+                        onPhotoTaken(selectedImagePath,"");
                         System.gc();
                     }
 
@@ -168,7 +168,7 @@ public abstract class MediaActivity extends BaseActivity implements PhotoTaken {
                         options.inSampleSize = scale;
                         bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
                         _taken = true;
-                        onPhotoTaken(selectedImagePath);
+                        onPhotoTaken(selectedImagePath,"");
                         System.gc();
                     }
 

@@ -331,6 +331,7 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
     Bitmap bm = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.white);
     String extStorageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+"/whiteImage/".toString();
     File rootDir = new File(extStorageDirectory);
+
     if (!rootDir.exists()) {
       rootDir.mkdir();
     }
@@ -353,7 +354,8 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
     Callback mCallback=callback1;
     Log.e("Callback",mCallback.toString());
     this.callback=mCallback;
-
+    this.options=options1;
+    String savePath =options1.getMap("storageOptions").getString("path");
     String imageLink=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+"/whiteImage/white123.png";
     if (UtilFunctions.stringIsNotEmpty(imageLink)) {
       // decode image size
@@ -389,7 +391,7 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
 
       bitmap = BitmapFactory.decodeFile(imageLink, options);
       _taken = true;
-      onPhotoTaken(imageLink);
+      onPhotoTaken(imageLink,savePath);
       System.gc();
     }
 
@@ -435,7 +437,7 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
 
       bitmap = BitmapFactory.decodeFile(imageLink, options2);
       _taken = true;
-      onPhotoTaken(imageLink);
+      onPhotoTaken(imageLink,"");
       System.gc();
     }
   }
@@ -578,24 +580,25 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
           options.inSampleSize = scale;
           bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
           _taken = true;
-          onPhotoTaken(selectedImagePath);
+          onPhotoTaken(selectedImagePath,"");
           System.gc();
         }
 
         break;
 
-        case FromPhotoEditor:
-         uri= Uri.fromFile(new File(data.getExtras().get("imagePath").toString()));
+      case FromPhotoEditor:
+        uri= Uri.fromFile(new File(data.getExtras().get("imagePath").toString()));
         finalImagePath=data.getExtras().get("imagePath").toString();
 
 
-          imageConfig = imageConfig.withOriginalFile(new File(finalImagePath));
+        imageConfig = imageConfig.withOriginalFile(new File(finalImagePath));
 
         break;
 
       case REQUEST_LAUNCH_IMAGE_LIBRARY:
         uri = data.getData();
         String realPath = getRealPathFromURI(uri);
+        String savePath =options.getMap("storageOptions").getString("path");
         final boolean isUrl = !TextUtils.isEmpty(realPath) &&
                 Patterns.WEB_URL.matcher(realPath).matches();
         if (realPath == null || isUrl)
@@ -654,7 +657,7 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
           options.inSampleSize = scale;
           bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
           _taken = true;
-          onPhotoTaken(selectedImagePath);
+          onPhotoTaken(selectedImagePath,savePath);
           System.gc();
         }
 
@@ -744,10 +747,10 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
 
     if (finalImagePath!=null){
       responseHelper.invokeResponse(callback);
-    callback = null;
-    this.options = null;
+      callback = null;
+      this.options = null;
       finalImagePath=null;
-    return;
+      return;
     }
 
 
@@ -755,9 +758,10 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
   }
 
   @Override
-  public void onPhotoTaken(String selectedImagePath) {
+  public void onPhotoTaken(String selectedImagePath,String savePath) {
     Intent intent = new Intent(getContext(), PhotoEditorActivity.class);
     intent.putExtra("selectedImagePath", selectedImagePath);
+    intent.putExtra("savePath", savePath);
     getCurrentActivity().startActivityForResult(intent,FromPhotoEditor);
   }
 

@@ -57,6 +57,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     private int colorCodeTextView = -1;
     private PhotoEditorSDK photoEditorSDK;
     public static String path;
+    private String savePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_photo_editor);
 
         String selectedImagePath = getIntent().getExtras().getString("selectedImagePath");
+        savePath = getIntent().getExtras().getString("savePath");
+        Log.e("savePath-------------->",savePath);
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
@@ -316,9 +319,14 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
             public void onFinish() {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                String imageName = "IMG_" + timeStamp + ".jpg";
+//                String imageName = "IMG_" + timeStamp + ".jpg";
+                String[] arrOfPaths = savePath.split("/");
+                Log.e("arrOfPaths-------",arrOfPaths.length+"");
+                String path=arrOfPaths[arrOfPaths.length-1];
+                Log.e("Path=====",path);
+                String imageName = "IMG_" + path + ".jpg";
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra("imagePath", photoEditorSDK.saveImage("PhotoEditorSDK", imageName));
+                returnIntent.putExtra("imagePath", photoEditorSDK.saveImage(savePath, imageName));
                 path=returnIntent.getStringExtra("imagePath");
                 ImageEditorModule.setResult(path,getApplicationContext());
 
