@@ -325,8 +325,18 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
                 String path=arrOfPaths[arrOfPaths.length-1];
                 Log.e("Path=====",path);
                 String imageName = "IMG_" + path + ".jpg";
+
+
+                String str=savePath;
+                int index=str.lastIndexOf('/');
+                String folderName=str.substring(0,index);
+                Log.e("-Last segmet re,pved",str.substring(0,index));
+                System.out.println(str.substring(0,index));
+
+
+
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra("imagePath", photoEditorSDK.saveImage(savePath, imageName));
+                returnIntent.putExtra("imagePath", photoEditorSDK.saveImage(folderName, imageName));
                 path=returnIntent.getStringExtra("imagePath");
                 ImageEditorModule.setResult(path,getApplicationContext());
 
