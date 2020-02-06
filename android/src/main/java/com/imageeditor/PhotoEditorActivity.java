@@ -328,6 +328,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
 
                 String str=savePath;
+
                 int index=str.lastIndexOf('/');
                 String folderName=str.substring(0,index);
                 Log.e("-Last segmet re,pved",str.substring(0,index));

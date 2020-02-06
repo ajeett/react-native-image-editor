@@ -543,7 +543,8 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
 
         selectedImagePath = new File(path1,cameraCaptureURI.getLastPathSegment()).getAbsolutePath();
 
-
+        String mSavePath =options.getMap("storageOptions").getString("path");
+        Log.e("saved path for camera",mSavePath);
 
         if (UtilFunctions.stringIsNotEmpty(selectedImagePath)) {
           // decode image size
@@ -580,7 +581,7 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
           options.inSampleSize = scale;
           bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
           _taken = true;
-          onPhotoTaken(selectedImagePath,"");
+          onPhotoTaken(selectedImagePath,mSavePath);
           System.gc();
         }
 
