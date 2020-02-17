@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -58,7 +59,10 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     private PhotoEditorSDK photoEditorSDK;
     public static String path;
     private String savePath;
-
+    private ImageView photoEditImageView;
+    private Bitmap bitmap1;
+    private Bitmap bitmap;
+    private int angle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +74,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
-        Bitmap bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
+        bitmap = BitmapFactory.decodeFile(selectedImagePath, options);
 
         Typeface newFont = Typeface.createFromAsset(getAssets(), "font/eventtus.ttf");
         emojiFont = Typeface.createFromAsset(getAssets(), "font/emojione.ttf");
@@ -85,6 +89,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         TextView deleteTextView = (TextView) findViewById(R.id.delete_tv);
 //        TextView addImageEmojiTextView = (TextView) findViewById(R.id.add_image_emoji_tv);
         TextView saveTextView = (TextView) findViewById(R.id.save_tv);
+        ImageView rotateTv = (ImageView) findViewById(R.id.rotate_tv);
         TextView saveTextTextView = (TextView) findViewById(R.id.save_text_tv);
         undoTextView = (TextView) findViewById(R.id.undo_tv);
         undoTextTextView = (TextView) findViewById(R.id.undo_text_tv);
@@ -93,7 +98,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         TextView clearAllTextView = (TextView) findViewById(R.id.clear_all_tv);
         TextView clearAllTextTextView = (TextView) findViewById(R.id.clear_all_text_tv);
         TextView goToNextTextView = (TextView) findViewById(R.id.go_to_next_screen_tv);
-        ImageView photoEditImageView = (ImageView) findViewById(R.id.photo_edit_iv);
+        photoEditImageView = (ImageView) findViewById(R.id.photo_edit_iv);
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         topShadow = findViewById(R.id.top_shadow);
         topShadowRelativeLayout = (RelativeLayout) findViewById(R.id.top_parent_rl);
@@ -103,6 +108,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 //        ViewPager pager = (ViewPager) findViewById(R.id.image_emoji_view_pager);
 //        PageIndicator indicator = (PageIndicator) findViewById(R.id.image_emoji_indicator);
 
+        bitmap1=bitmap;
+        angle=0;
         photoEditImageView.setImageBitmap(bitmap);
 
         closeTextView.setTypeface(newFont);
@@ -158,6 +165,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         addTextView.setOnClickListener(this);
         addPencil.setOnClickListener(this);
         saveTextView.setOnClickListener(this);
+        rotateTv.setOnClickListener(this);
         saveTextTextView.setOnClickListener(this);
         undoTextView.setOnClickListener(this);
         undoTextTextView.setOnClickListener(this);
@@ -322,9 +330,9 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 //                String imageName = "IMG_" + timeStamp + ".jpg";
                 String[] arrOfPaths = savePath.split("/");
                 Log.e("arrOfPaths-------",arrOfPaths.length+"");
-                String path=arrOfPaths[arrOfPaths.length-1];
-                Log.e("Path=====",path);
-                String imageName = "IMG_" + path + ".jpg";
+                String path1=arrOfPaths[arrOfPaths.length-1];
+                Log.e("Path=====",path1);
+                String imageName = "IMG_" + path1 + ".jpg";
 
 
                 String str=savePath;
@@ -372,7 +380,27 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             eraseDrawing();
         } else if (v.getId() == R.id.go_to_next_screen_tv) {
             returnBackWithSavedImage();
+        }else if (v.getId() == R.id.rotate_tv) {
+            if (angle==360){
+                angle=0;
+                angle=angle+90;
+            }else
+            {
+                angle=angle+90;
+            }
+
+            bitmap= rotateImage(bitmap1,angle);
+            photoEditImageView.setImageBitmap(bitmap);
         }
+
+    }
+
+    public Bitmap rotateImage(Bitmap source, float angle)
+    {
+        Log.e("rotations","hello");
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
     @Override
