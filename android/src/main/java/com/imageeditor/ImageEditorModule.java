@@ -402,6 +402,8 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
     Callback mCallback=callback;
     Log.e("Callback",mCallback.toString());
     this.callback=mCallback;
+    this.options=options;
+    String savePath =options.getMap("storageOptions").getString("path");
     String imageLink=options.getString("imageUri");
     if (UtilFunctions.stringIsNotEmpty(imageLink)) {
       // decode image size
@@ -437,7 +439,7 @@ public class ImageEditorModule extends ReactContextBaseJavaModule
 
       bitmap = BitmapFactory.decodeFile(imageLink, options2);
       _taken = true;
-      onPhotoTaken(imageLink,"");
+      onPhotoTaken(imageLink,savePath);
       System.gc();
     }
   }
