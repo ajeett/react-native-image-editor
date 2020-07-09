@@ -1,4 +1,4 @@
-# React Native Image Picker
+# React Native Image Editor
 
 [![npm version](https://badge.fury.io/js/react-native-image-picker.svg)](https://badge.fury.io/js/react-native-image-picker)
 [![npm](https://img.shields.io/npm/dt/react-native-image-picker.svg)](https://npmcharts.com/compare/react-native-image-picker?minimal=true)
@@ -19,7 +19,7 @@ To use this library you need to ensure you match up with the correct version of 
 
 p.s. React Native introduced AndroidX support in 0.60, which is a **breaking change** for most libraries (incl. this one) using native Android functionality.
 
-| `@react-native-community/imagepicker` version | Required React Native Version                                                     |
+| `@react-native-community/imageeditor` version | Required React Native Version                                                     |
 | ----------------------------------------- | --------------------------------------------------------------------------------- |
 | `1.x.x`                                   | `>= 0.60` or `>= 0.59` if using [Jetifier](https://github.com/mikehardy/jetifier) |
 | `0.x.x`                                   | `<= 0.59`                                                                         |
