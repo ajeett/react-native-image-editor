@@ -79,7 +79,7 @@
     "react-native": "0.60.0-rc.2",
     "react-test-renderer": "16.8.6",
     "rimraf": "^2.6.3",
-    "semantic-release": "15.13.16",
+    "semantic-release": "17.2.3",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.2"
   },
